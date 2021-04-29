@@ -7,8 +7,8 @@ const User = require('./models/User');
 const Order = require('./models/Order');
 
 // Database connection
-const sequelize = new Sequelize('ecomerceApi', 'miUsuarioEcomerceApi', 'toor', {
-  host: 'localhost',
+const sequelize = new Sequelize(process.env.MARIADB_DATABASE, process.env.MARIADB_USER, process.env.MARIADB_PASSWORD, {
+  host: process.env.MARIADB_HOST,
   dialect: 'mariadb',
   logging: false,
 });

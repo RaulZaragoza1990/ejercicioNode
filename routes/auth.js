@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sequelize = require('../db');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 router.post('/login', async (req, res) => {
   const { body } = req;
@@ -18,8 +19,8 @@ router.post('/login', async (req, res) => {
   }
 
   // Generate a token
-  const token = jwt.sign({ userId: user.id }, 'secretkey', {
-    expiresIn: 36000,
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
   return res.json({
